@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+<body>
+
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">Zordon Power</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">Rita's Laugh</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">Lord Zedd's Laugh</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">PR Weapons</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">Karate Yell</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">Rita </span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">Its Morphin time!</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">Go Power Rangers!</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">PR beep</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="sounds/MjQ1OTc5MDczMjQ1OTUx_oF4eRoMGohs.mp3"></audio>
+  <audio data-key="83" src="sounds/NTE2Mjc5MDczNTE2MzE2_wi3is6q9gxA.mp3"></audio>
+  <audio data-key="68" src="sounds/ODc0MTc5MDczODc0MjY2_5RSAnnUt6bo.mp3"></audio>
+  <audio data-key="70" src="sounds/NzUxNjc5MDczNzUxNzMx_YUbODgDK4Pk.mp3"></audio>
+  <audio data-key="71" src="sounds/NjAxNzc5MDczNjAxODAw_FowZ4anXQ5U.mp3"></audio>
+  <audio data-key="72" src="sounds/MjEwMDc5MDczMjEwMDY1_Y_2fLPTxjM6pg.mp3"></audio>
+  <audio data-key="74" src="sounds/MzIwMzc5MDczMzIwMzM2_r45xYev3sYI.mp3"></audio>
+  <audio data-key="75" src="sounds/NjM2ODI1NzIzNjM2ODk2_tuh4c9MW8_2bo.mp3"></audio>
+  <audio data-key="76" src="sounds/631901__degrant3814__mighty-morphin-power-rangers-wrist-communicator-sound.mp3"></audio>
+
+<script>
+  
+function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      if (!audio) return;
+     audio.currentTime= 0
+     audio.play();
+    key.classList.add('playing');
+    }
+  
+  function removeTransition(e){
+    if(e.propertyName !== "transform") return;
+    
+    this.classList.remove('playing');
+   
+  }
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition ));
+  window.addEventListener('keydown', playSound);
+
+</script>
+
+
+</body>
+</html>
